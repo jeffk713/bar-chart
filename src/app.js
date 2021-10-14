@@ -1,5 +1,5 @@
-const title = document.querySelector("h1");
+// const title = document.querySelector("h1");
 
-title.textContent = "hello";
+// title.textContent = "hello";
 
-$(".header_title").hide();
+// $(".header_title").hide();
