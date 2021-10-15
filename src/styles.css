@@ -32,6 +32,41 @@ main .section_container {
   height: 80vw;
 }
 
+/* form */
+.form_instruction_container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 80px;
+  margin-bottom: 20px;
+}
+.instruction_title {
+  margin: 0 auto;
+}
+
+.form_container {
+  position: relative;
+}
+.form {
+  right: 0;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.data_input_container {
+  margin-right: 10px;
+}
+.data_input {
+  display: flex;
+  flex-direction: row;
+}
+.data_input p {
+  margin: 0 15px;
+}
+
+/* section */
+
 .section {
   width: 45%;
   height: 350px;
