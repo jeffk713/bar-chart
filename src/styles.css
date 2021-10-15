@@ -58,13 +58,12 @@ main .section_container {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: green;
   border-left: solid black 2px;
   border-bottom: solid black 2px;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-end;
 }
 
@@ -77,6 +76,23 @@ main .section_container {
   height: 200px;
   border: solid black 1px;
   border-bottom: none;
+  position: relative;
+  margin-left: 20px;
+}
+
+.element_value {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  /* top: 45%;*/
+  /* top: 100%; */
+}
+
+.element_label {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  margin-top: 5px;
   text-align: center;
 }
 
@@ -85,12 +101,24 @@ main .section_container {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
-  background-color: red;
 }
+
 .chart_container .chart_y {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: yellow;
+  position: relative;
+}
+.y_max {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 5px;
+}
+.y_min {
+  position: absolute;
+  top: 90%;
+  right: 0;
+  margin-right: 5px;
 }
