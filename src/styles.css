@@ -66,10 +66,13 @@ main .section_container {
 }
 
 /* section */
+.section_container {
+  padding-top: 40px;
+}
 
 .section {
   width: 45%;
-  height: 350px;
+  height: 400px;
   padding: 10px;
   display: flex;
   flex-direction: column;
