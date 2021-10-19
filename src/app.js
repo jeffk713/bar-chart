@@ -4,6 +4,7 @@ $(document).ready(() => {
 
   $(".form").submit((event) => {
     event.preventDefault();
+
     for (let i = 0; i < 5; i++) {
       Object.assign(inputObj, {
         [`data${i + 1}`]: {
@@ -12,6 +13,10 @@ $(document).ready(() => {
         },
       });
     }
+
+    Object.assign(inputObj, {
+      display: $("select[name=data_side]").val(),
+    });
 
     console.log(inputObj);
   });
