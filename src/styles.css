@@ -103,17 +103,19 @@ main .section_container {
   align-items: flex-end;
 }
 
-.chart_element1,
-.chart_element2,
-.chart_element3,
-.chart_element4,
-.chart_element5 {
-  width: 50px;
-  height: 200px;
+.chart_element {
   border: solid black 1px;
   border-bottom: none;
   position: relative;
   margin-left: 20px;
+}
+.element1,
+.element2,
+.element3,
+.element4,
+.element5 {
+  width: 50px;
+  height: 100px;
 }
 
 .element_value {
