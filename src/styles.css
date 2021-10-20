@@ -100,8 +100,7 @@ input[type="number"] {
   grid-template-rows: [row1-start] auto [row1-end] 50px [last-line];
 } */
 
-.left_chart,
-.right_chart {
+.chart {
   border-left: solid black 2px;
   border-bottom: solid black 2px;
 
@@ -117,14 +116,15 @@ input[type="number"] {
   position: relative;
   margin-left: 20px;
 }
-.element1,
+
+/* .element1,
 .element2,
 .element3,
 .element4,
 .element5 {
   width: 50px;
   height: 100px;
-}
+} */
 
 .element_value {
   position: absolute;

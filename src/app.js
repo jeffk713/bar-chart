@@ -5,7 +5,10 @@ const getInputObj = () => {
     if ($(`input[name=data_name${i}]`).val() === "") {
       Object.assign(objToAddData, { NumOfData: i - 1 });
       break;
+    } else if (i === 5) {
+      Object.assign(objToAddData, { NumOfData: i });
     }
+
     Object.assign(objToAddData, {
       [`data${i}`]: {
         name: $(`input[name=data_name${i}]`).val(),
@@ -39,9 +42,9 @@ const getInputObj = () => {
 };
 
 const getHtmlToInsert = (data) => {
-  console.log(`${data.display}_chart`);
   let html = "";
-  html += `<div class=${data["display"]}_chart>`;
+
+  html += '<div class="chart_container"><div class="chart">';
 
   for (let i = 1; i < 6; i++) {
     if (!data.hasOwnProperty([`data${i}`])) {
@@ -54,7 +57,7 @@ const getHtmlToInsert = (data) => {
     }</div><div class='element_label'>${data[`data${i}`]["name"]}</div></div>`;
   }
 
-  html += "</div>";
+  html += "</div></div>";
 
   // TO ADD LATER WHEN Y-AXIS IS DONE
   // html +=
@@ -94,11 +97,13 @@ $(document).ready(() => {
 
     const inputData = getInputObj();
 
+    $(".chart_container").empty();
+
     console.log(inputData);
 
     const htmlToInsert = getHtmlToInsert(inputData);
 
-    $(".section_left").append(htmlToInsert);
+    $(`.section_${inputData["display"]}`).append(htmlToInsert);
 
     adjustChartSize(inputData);
   });
