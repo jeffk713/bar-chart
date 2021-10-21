@@ -22,11 +22,18 @@ const getInputObj = () => {
     if (i === 1) {
       Object.assign(objToAddData, {
         biggestValue: Number($(`input[name=data_value${i}]`).val()),
+        smallestValue: Number($(`input[name=data_value${i}]`).val()),
       });
     } else if (
       Number($(`input[name=data_value${i}]`).val()) > objToAddData.biggestValue
     ) {
       objToAddData.biggestValue = Number($(`input[name=data_value${i}]`).val());
+    } else if (
+      Number($(`input[name=data_value${i}]`).val()) < objToAddData.smallestValue
+    ) {
+      objToAddData.smallestValue = Number(
+        $(`input[name=data_value${i}]`).val()
+      );
     }
   }
 
@@ -51,7 +58,11 @@ const getInputObj = () => {
 const getHtmlToInsert = (data) => {
   let html = "";
 
-  html += '<div class="chart_container"><div class="chart">';
+  if (data["numOfData"] === 1) {
+    html += `<div class="chart_container"><div class="chart"><p class="y_max">${data["biggestValue"]}</p>`;
+  } else {
+    html += `<div class="chart_container"><div class="chart"><p class="y_max">${data["biggestValue"]}</p><p class="y_min">${data["smallestValue"]}</p>`;
+  }
 
   for (let i = 1; i < 6; i++) {
     if (!data.hasOwnProperty([`data${i}`])) {
@@ -93,6 +104,15 @@ const adjustStyles = (data) => {
   }
 
   $(".bar").css("margin-left", data["barGap"]);
+
+  $(".y_min").css(
+    "top",
+    `${
+      data["size"]["height"] -
+      data["size"]["height"] * (data["smallestValue"] / data["biggestValue"]) -
+      10
+    }px`
+  );
 };
 
 // const drawBarChart = (data, options, element) => {

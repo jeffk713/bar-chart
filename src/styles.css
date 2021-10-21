@@ -47,12 +47,10 @@ input[type="number"] {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 20px;
 }
 
 .form {
   right: 0;
-  margin-left: 50px;
   display: flex;
   flex-direction: row;
 }
@@ -75,30 +73,22 @@ input[type="number"] {
 
 /* section */
 .section_container {
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 .section_left,
 .section_right {
-  width: 45%;
-  height: 400px;
-  padding: 10px;
+  padding: 20px;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
 }
 
 .section_title {
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   text-align: center;
 }
-
-/* .chart_container {
-  flex-grow: 10;
-  display: grid;
-  grid-template-columns: [first] 60px [line2] auto [end];
-  grid-template-rows: [row1-start] auto [row1-end] 50px [last-line];
-} */
 
 .chart {
   border-left: solid black 2px;
@@ -108,6 +98,7 @@ input[type="number"] {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  position: relative;
 }
 
 .bar {
@@ -143,14 +134,13 @@ input[type="number"] {
 }
 
 .y_max {
+  margin: 0;
   position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 5px;
+  top: -10px;
+  left: -30px;
 }
 .y_min {
+  margin: 0;
   position: absolute;
-  top: 90%;
-  right: 0;
-  margin-right: 5px;
+  left: -30px;
 }
