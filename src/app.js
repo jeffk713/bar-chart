@@ -3,16 +3,18 @@ const getInputObj = () => {
 
   for (let i = 1; i < 6; i++) {
     if ($(`input[name=data_name${i}]`).val() === "") {
-      Object.assign(objToAddData, { NumOfData: i - 1 });
+      Object.assign(objToAddData, { numOfData: i - 1 });
       break;
     } else if (i === 5) {
-      Object.assign(objToAddData, { NumOfData: i });
+      Object.assign(objToAddData, { numOfData: i });
     }
 
     Object.assign(objToAddData, {
       [`data${i}`]: {
         name: $(`input[name=data_name${i}]`).val(),
         value: Number($(`input[name=data_value${i}]`).val()),
+        barColor: $(`select[name=bar_color${i}]`).val(),
+        labelColor: $(`select[name=label_color${i}]`).val(),
       },
     });
 
@@ -51,10 +53,12 @@ const getHtmlToInsert = (data) => {
       break;
     }
 
-    html += `<div class='chart_element element${i}'>`;
-    html += `<div class='element_value'>${
+    html += `<div class='bar bar${i}'>`;
+    html += `<div class='bar_value'>${
       data[`data${i}`]["value"]
-    }</div><div class='element_label'>${data[`data${i}`]["name"]}</div></div>`;
+    }</div><div class='bar_label label${i}'>${
+      data[`data${i}`]["name"]
+    }</div></div>`;
   }
 
   html += "</div></div>";
@@ -70,18 +74,22 @@ const adjustChartSize = (data) => {
   $(`.${data["display"]}_chart`).css("width", data["size"]["width"]);
   $(`.${data["display"]}_chart`).css("height", data["size"]["height"]);
 
-  $(".chart_element").css(
-    "width",
-    (data["size"]["width"] * 0.9) / data["NumOfData"]
-  );
+  $(".bar").css("width", (data["size"]["width"] * 0.9) / data["numOfData"]);
 
-  for (let i = 1; i < data["NumOfData"] + 1; i++) {
-    $(`.element${i}`).css(
+  for (let i = 1; i < data["numOfData"] + 1; i++) {
+    $(`.bar${i}`).css(
       "height",
       data["size"]["height"] *
         0.9 *
         (data[`data${i}`]["value"] / data["biggestValue"])
     );
+  }
+};
+
+const adjustStyles = (data) => {
+  for (let i = 1; i < data["numOfData"] + 1; i++) {
+    $(`.label${i}`).css("color", data[`data${i}`]["labelColor"]);
+    $(`.bar${i}`).css("background-color", data[`data${i}`]["barColor"]);
   }
 };
 
@@ -96,15 +104,14 @@ $(document).ready(() => {
     event.preventDefault();
 
     const inputData = getInputObj();
+    console.log(inputData);
 
     $(".chart_container").empty();
 
-    console.log(inputData);
-
     const htmlToInsert = getHtmlToInsert(inputData);
-
     $(`.section_${inputData["display"]}`).append(htmlToInsert);
 
     adjustChartSize(inputData);
+    adjustStyles(inputData);
   });
 });

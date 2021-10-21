@@ -110,7 +110,7 @@ input[type="number"] {
   align-items: flex-end;
 }
 
-.chart_element {
+.bar {
   border: solid black 1px;
   border-bottom: none;
   position: relative;
@@ -126,7 +126,7 @@ input[type="number"] {
   height: 100px;
 } */
 
-.element_value {
+.bar_value {
   position: absolute;
   width: 100%;
   text-align: center;
@@ -134,7 +134,7 @@ input[type="number"] {
   /* top: 100%; */
 }
 
-.element_label {
+.bar_label {
   position: absolute;
   width: 100%;
   top: 100%;
