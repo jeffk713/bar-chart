@@ -15,6 +15,7 @@ const getInputObj = () => {
         value: Number($(`input[name=data_value${i}]`).val()),
         barColor: $(`select[name=bar_color${i}]`).val(),
         labelColor: $(`select[name=label_color${i}]`).val(),
+        valuePosition: $(`select[name=bar_value_position${i}]`).val(),
       },
     });
 
@@ -30,13 +31,17 @@ const getInputObj = () => {
   }
 
   Object.assign(objToAddData, {
+    barGap: Number($("input[name=bar_gap]").val()),
+  });
+
+  Object.assign(objToAddData, {
     display: $("select[name=data_side]").val(),
   });
 
   Object.assign(objToAddData, {
     size: {
-      width: $(`input[name=chart_width]`).val(),
-      height: $(`input[name=chart_height]`).val(),
+      width: Number($(`input[name=chart_width]`).val()),
+      height: Number($(`input[name=chart_height]`).val()),
     },
   });
 
@@ -54,7 +59,7 @@ const getHtmlToInsert = (data) => {
     }
 
     html += `<div class='bar bar${i}'>`;
-    html += `<div class='bar_value'>${
+    html += `<div class='bar_value bar_value${i}'>${
       data[`data${i}`]["value"]
     }</div><div class='bar_label label${i}'>${
       data[`data${i}`]["name"]
@@ -70,9 +75,9 @@ const getHtmlToInsert = (data) => {
   return html;
 };
 
-const adjustChartSize = (data) => {
-  $(`.${data["display"]}_chart`).css("width", data["size"]["width"]);
-  $(`.${data["display"]}_chart`).css("height", data["size"]["height"]);
+const adjustStyles = (data) => {
+  $(".chart").css("width", data["size"]["width"]);
+  $(".chart").css("height", data["size"]["height"]);
 
   $(".bar").css("width", (data["size"]["width"] * 0.9) / data["numOfData"]);
 
@@ -80,17 +85,14 @@ const adjustChartSize = (data) => {
     $(`.bar${i}`).css(
       "height",
       data["size"]["height"] *
-        0.9 *
         (data[`data${i}`]["value"] / data["biggestValue"])
     );
-  }
-};
-
-const adjustStyles = (data) => {
-  for (let i = 1; i < data["numOfData"] + 1; i++) {
     $(`.label${i}`).css("color", data[`data${i}`]["labelColor"]);
     $(`.bar${i}`).css("background-color", data[`data${i}`]["barColor"]);
+    $(`.bar_value${i}`).css("top", data[`data${i}`]["valuePosition"]);
   }
+
+  $(".bar").css("margin-left", data["barGap"]);
 };
 
 // const drawBarChart = (data, options, element) => {
@@ -111,7 +113,6 @@ $(document).ready(() => {
     const htmlToInsert = getHtmlToInsert(inputData);
     $(`.section_${inputData["display"]}`).append(htmlToInsert);
 
-    adjustChartSize(inputData);
     adjustStyles(inputData);
   });
 });
