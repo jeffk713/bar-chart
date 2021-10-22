@@ -90,6 +90,10 @@ input[type="number"] {
   text-align: center;
 }
 
+.chart_title {
+  text-align: center;
+}
+
 .chart {
   border-left: solid black 2px;
   border-bottom: solid black 2px;
@@ -99,6 +103,7 @@ input[type="number"] {
   justify-content: center;
   align-items: flex-end;
   position: relative;
+  margin: 0 auto;
 }
 
 .bar {

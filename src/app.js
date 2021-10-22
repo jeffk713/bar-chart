@@ -36,6 +36,13 @@ const getInputObj = () => {
       );
     }
   }
+  Object.assign(objToAddData, {
+    chart: {
+      name: $("input[name=chart_name]").val(),
+      size: Number($("input[name=chart_font_size]").val()),
+      color: $("select[name=chart_color]").val(),
+    },
+  });
 
   Object.assign(objToAddData, {
     barGap: Number($("input[name=bar_gap]").val()),
@@ -59,9 +66,9 @@ const getHtmlToInsert = (data) => {
   let html = "";
 
   if (data["numOfData"] === 1) {
-    html += `<div class="chart_container"><div class="chart"><p class="y_max">${data["biggestValue"]}</p>`;
+    html += `<div class="chart_container"><p class="chart_title">${data["chart"]["name"]}</p><div class="chart"><p class="y_max">${data["biggestValue"]}</p>`;
   } else {
-    html += `<div class="chart_container"><div class="chart"><p class="y_max">${data["biggestValue"]}</p><p class="y_min">${data["smallestValue"]}</p>`;
+    html += `<div class="chart_container"><p class="chart_title">${data["chart"]["name"]}</p><div class="chart"><p class="y_max">${data["biggestValue"]}</p><p class="y_min">${data["smallestValue"]}</p>`;
   }
 
   for (let i = 1; i < 6; i++) {
@@ -87,10 +94,14 @@ const getHtmlToInsert = (data) => {
 };
 
 const adjustStyles = (data) => {
+  $(".chart_title").css("font-size", data["chart"]["size"]);
+  $(".chart_title").css("color", data["chart"]["color"]);
+
   $(".chart").css("width", data["size"]["width"]);
   $(".chart").css("height", data["size"]["height"]);
 
   $(".bar").css("width", (data["size"]["width"] * 0.9) / data["numOfData"]);
+  $(".bar").css("margin-left", data["barGap"]);
 
   for (let i = 1; i < data["numOfData"] + 1; i++) {
     $(`.bar${i}`).css(
@@ -102,8 +113,6 @@ const adjustStyles = (data) => {
     $(`.bar${i}`).css("background-color", data[`data${i}`]["barColor"]);
     $(`.bar_value${i}`).css("top", data[`data${i}`]["valuePosition"]);
   }
-
-  $(".bar").css("margin-left", data["barGap"]);
 
   $(".y_min").css(
     "top",
@@ -127,6 +136,10 @@ $(document).ready(() => {
 
     const inputData = getInputObj();
     console.log(inputData);
+
+    if (inputData["numOfData"] === 0) {
+      return alert("please enter at least one data");
+    }
 
     $(".chart_container").empty();
 

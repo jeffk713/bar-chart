@@ -16,6 +16,42 @@
         <form class="form">
           <div class="data_input_container">
             <div class="data_input">
+              <p>Chart name</p>
+              <input type="text" name="chart_name" placeholder="chart name" />
+              <p>Size</p>
+              <input type="number" name="chart_font_size" placeholder="in pixel" />
+              <p>Color</p>
+              <select name="chart_color">
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="orange">Orange</option>
+                <option value="cyan">Cyan</option>
+              </select>
+              <p>Where to display</p>
+              <select name="data_side">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+            </div>
+            <div class="data_input">
+              <p>Size</p>
+              <input
+                type="number"
+                name="chart_width"
+                placeholder="width in pixel"
+              />
+              <input
+                type="number"
+                name="chart_height"
+                placeholder="height in pixel"
+              />
+              <p>Gap between bars</p>
+              <input type="number" name="bar_gap" placeholder="in pixel" />
+            </div>
+          </br>
+            <div class="data_input">
               <p>Data 1</p>
               <input type="text" name="data_name1" placeholder="data name" />
               <input type="text" name="data_value1" placeholder="data value" />
@@ -155,7 +191,7 @@
                 </select>
               </div>
             </div>
-            <div class="data_input last_data">
+            <div class="data_input">
               <p>Data 5</p>
               <input type="text" name="data_name5" placeholder="data name" />
               <input type="text" name="data_value5" placeholder="data value" />
@@ -189,28 +225,6 @@
                   <option value="cyan">Cyan</option>
                 </select>
               </div>
-            </div>
-            <div class="data_input">
-              <p>Size</p>
-              <input
-                type="number"
-                name="chart_width"
-                placeholder="width in pixel"
-              />
-              <input
-                type="number"
-                name="chart_height"
-                placeholder="height in pixel"
-              />
-              <p>Gap between bars</p>
-              <input type="number" name="bar_gap" placeholder="gap in pixel" />
-            </div>
-            <div class="data_input bar_option">
-              <p>Where to display chart?</p>
-              <select name="data_side">
-                <option value="left">Left</option>
-                <option value="right">Right</option>
-              </select>
             </div>
           </div>
           <input type="submit" class="data_submit" />
