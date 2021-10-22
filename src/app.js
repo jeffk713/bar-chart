@@ -124,9 +124,14 @@ const adjustStyles = (data) => {
   );
 };
 
-// const drawBarChart = (data, options, element) => {
+const drawBarChart = (data) => {
+  $(".chart_container").empty();
 
-// }
+  const htmlToInsert = getHtmlToInsert(data);
+  $(`.section_${data["display"]}`).append(htmlToInsert);
+
+  adjustStyles(data);
+};
 
 $(document).ready(() => {
   //get input upon submitting
@@ -135,17 +140,12 @@ $(document).ready(() => {
     event.preventDefault();
 
     const inputData = getInputObj();
-    console.log(inputData);
+    // console.log(inputData);
 
     if (inputData["numOfData"] === 0) {
       return alert("please enter at least one data");
     }
 
-    $(".chart_container").empty();
-
-    const htmlToInsert = getHtmlToInsert(inputData);
-    $(`.section_${inputData["display"]}`).append(htmlToInsert);
-
-    adjustStyles(inputData);
+    drawBarChart(inputData);
   });
 });
