@@ -134,13 +134,103 @@ const drawBarChart = (data) => {
 };
 
 $(document).ready(() => {
-  //get input upon submitting
+  alert("Demo chart will display after this message for 5seconds.");
+
+  let demoInput = {
+    barGap: 15,
+    biggestValue: 164,
+    smallestValue: 140,
+    display: "left",
+    numOfData: 3,
+    chart: {
+      color: "red",
+      name: "height (cm)",
+      size: 20,
+    },
+    data1: {
+      barColor: "red",
+      labelColor: "red",
+      name: "child 1",
+      value: 140,
+      valuePosition: "0%",
+    },
+    data2: {
+      barColor: "green",
+      labelColor: "green",
+      name: "child 2",
+      value: 164,
+      valuePosition: "0%",
+    },
+    data3: {
+      barColor: "orange",
+      labelColor: "orange",
+      name: "child 3",
+      value: 159,
+      valuePosition: "0%",
+    },
+    size: {
+      width: 400,
+      height: 300,
+    },
+  };
+
+  drawBarChart(demoInput);
+
+  setTimeout(() => {
+    $(".chart_container").empty();
+  }, 2900);
+
+  demoInput = {
+    barGap: 20,
+    biggestValue: 6,
+    smallestValue: 1,
+    display: "right",
+    numOfData: 3,
+    chart: {
+      color: "red",
+      name: "workout frequency per week",
+      size: 20,
+    },
+    data1: {
+      barColor: "red",
+      labelColor: "red",
+      name: "person 1",
+      value: 3,
+      valuePosition: "0%",
+    },
+    data2: {
+      barColor: "green",
+      labelColor: "green",
+      name: "person 2",
+      value: 6,
+      valuePosition: "0%",
+    },
+    data3: {
+      barColor: "orange",
+      labelColor: "orange",
+      name: "person 3",
+      value: 1,
+      valuePosition: "0%",
+    },
+    size: {
+      width: 400,
+      height: 300,
+    },
+  };
+
+  setTimeout(() => {
+    drawBarChart(demoInput);
+  }, 3000);
+
+  setTimeout(() => {
+    $(".chart_container").empty();
+  }, 6000);
 
   $(".form").submit((event) => {
     event.preventDefault();
 
     const inputData = getInputObj();
-    // console.log(inputData);
+    console.log(inputData);
 
     if (inputData["numOfData"] === 0) {
       return alert("please enter at least one data");
